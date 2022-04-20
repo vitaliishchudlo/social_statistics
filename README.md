@@ -13,16 +13,13 @@ This project consists of two parts:
   - LCD output
 
 #### Web server
-Will be developed in Flask using Python 3.8+
-
-The API shall be able to return data from the user's social networks in JSON format.
+      Will be developed in Flask using Python 3.8+
+      The API shall be able to return data from the user's social networks in JSON format.
 
 #### LCD Output:
-The display system shall be developed in the MicroPayton language.
-
-The ESP32/ESP8266 microcontroller will be used.
-
-The output of information will be performed on LCD 1602/2004
+      The display system shall be developed in the MicroPayton language.
+      The ESP32/ESP8266 microcontroller will be used.
+      The output of information will be performed on LCD 1602/2004
 
 ___
 
