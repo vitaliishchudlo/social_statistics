@@ -14,7 +14,7 @@ times = 0
 while not sta_if:
     print('Started while not sta_if')
     sta_if = connect_wireless_network()
-    print('STA_IF: ', sta_if)
+    print('STA_IF:  ', sta_if)
 
     print('Setting sta_if - True')
     sta_if = True
