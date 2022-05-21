@@ -4,7 +4,7 @@ import time
 print('WAITING 1 SECOND BEFORE START!!!!')
 time.sleep(1)
 
-# --------------------------------------------
+#--------------------------------------------
 
 abc = 0
 
@@ -23,3 +23,5 @@ while abc < 16:
     abc += 1
 
 print('finish')
+
+

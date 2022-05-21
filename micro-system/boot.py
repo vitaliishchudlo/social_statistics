@@ -6,11 +6,10 @@ from manage_network import connect_wireless_network
 from mp_i2c_lcd1602 import LCD1602
 
 
-def clearConsole(): return print('\n' * 25 + '= ' * 10 +
-                                 'ESP-32 Started ' + '= ' * 10 + '\n')
-
-
+clearConsole = lambda: print('\n' * 25 + '= ' * 10 +
+                             'ESP-32 Started ' + '= ' * 10 + '\n')
 clearConsole()
+
 
 # Error pins initialization
 
@@ -21,7 +20,7 @@ lcd_error_pin.on()
 
 # Remove in future!!!!!
 network_error_pin.off()
-# lcd_error_pin.off()
+#lcd_error_pin.off()
 
 
 # Starting booting the system
@@ -41,7 +40,10 @@ except Exception:
 
 lcd = LCD1602(i2c)
 
-# while not sta_if_status:
+
+
+
+#while not sta_if_status:
 #    print('Started while not sta_if')
 #    sta_if = connect_wireless_network()
 #    print('STA_IF: ', sta_if_status)

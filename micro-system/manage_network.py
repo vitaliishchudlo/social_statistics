@@ -1,7 +1,6 @@
-import json
-import time
-
 import network
+import time
+import json
 
 
 def connect_wireless_network():
@@ -27,3 +26,8 @@ def connect_wireless_network():
         if sta_if.isconnected():
             return sta_if
     return False
+
+
+
+
+
