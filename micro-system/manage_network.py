@@ -1,6 +1,7 @@
-import network
-import time
 import json
+import time
+
+import network
 
 
 def connect_wireless_network():
@@ -10,7 +11,7 @@ def connect_wireless_network():
 
     with open('config.json', 'r') as file:
         result = json.loads(file.read())
-        ssid = result['network']['SSID']
+        ssid = result['network']['ssid']
         password = result['network']['password']
 
     if ssid and password:
