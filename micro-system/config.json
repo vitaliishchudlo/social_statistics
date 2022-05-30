@@ -1,6 +1,7 @@
 {
   "network": {
-    "SSID": null,
-    "password": null
+    "ssid": null,
+    "password": null   
   }
 }
+
