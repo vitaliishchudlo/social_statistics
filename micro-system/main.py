@@ -1,12 +1,21 @@
 import time
 
+
+if not wlan_status:
+    print('exiting main')
+    sys.exit()
+lcd.clear()
+lcd.puts('HELLO')
+sys.exit()
+
 # Remove in future
-print('WAITING 1 SECOND BEFORE START!!!!')
+print('\n\n WAITING 1 SECOND BEFORE START!!!!')
 time.sleep(1)
 
 # --------------------------------------------
 
 abc = 0
+lcd.clear()
 
 while abc < 16:
     try:
@@ -21,11 +30,12 @@ while abc < 16:
             print('LCD Broken')
         if err.value == -202:
             network_error_pin.on()
-            network_status = False
+            wlan_status = False
             print('Network broken')
     finally:
         print('sleeping ' + str(abc))
-        # time.sleep(1)
+        #time.sleep(1)
     abc += 1
 
-print('finish')
+print('FINISHING')
+
