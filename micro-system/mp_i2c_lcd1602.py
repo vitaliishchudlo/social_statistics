@@ -25,7 +25,7 @@ class LCD1602():
         for i in [0x28, 0x0C, 0x06, 0x01]:
             self.setcmd(i)
         self.px, self.py = 0, 0
-        self.pb = bytearray(' ' * 16)
+        self.pb = bytearray(' '*16)
         self.version = '2.0'
 
     def setReg(self, dat):
@@ -86,7 +86,7 @@ class LCD1602():
             a = 0x80
             if y > 0:
                 a = 0xC0
-            self.setcmd(a + x)
+            self.setcmd(a+x)
         self.setdat(ch)
 
     def puts(self, s, x=0, y=0):

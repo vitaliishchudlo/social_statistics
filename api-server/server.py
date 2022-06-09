@@ -11,6 +11,14 @@ def index():
     return 'Are you sure ?'
 
 
+def get_instagram_stats(username):
+    pass
+
+
+def get_twitter_stats(username):
+    pass
+
+
 @app.route(f'/{LINK_PREFIX}/get_social_data/')
 def get_social_data():
     if not request.args.get('platform'):
@@ -22,7 +30,15 @@ def get_social_data():
     if not len(request.args.get('username')) > 4:
         return jsonify(error='Your username is not true')
 
-    return 'Text'
+    platform = request.args.get('platform')
+    username = request.args.get('username')
+
+    if platform == 'instagram':
+        get_instagram_stats(username)
+        return jsonify(username=username, platform=platform, followers=152, following=224)
+    elif platform == 'twitter':
+        get_twitter_stats(username)
+        return jsonify(username=username, platform=platform, followers=152, following=224)
 
 
 if __name__ == '__main__':
