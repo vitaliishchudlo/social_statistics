@@ -7,11 +7,12 @@
 from utime import sleep_ms
 from machine import I2C
 
-LCD_I2C_ADDR=const(63)
+LCD_I2C_ADDR = const(63)
+
 
 class LCD1602():
-    def __init__(self, i2c, addr = 0):
-        self.i2c=i2c
+    def __init__(self, i2c, addr=0):
+        self.i2c = i2c
         self.buf = bytearray(1)
         self.BK, self.RS, self.E = 0x08, 0x00, 0x04
         self.ADDR = addr if addr else self.autoaddr()
@@ -25,7 +26,7 @@ class LCD1602():
             self.setcmd(i)
         self.px, self.py = 0, 0
         self.pb = bytearray(' '*16)
-        self.version='2.0'
+        self.version = '2.0'
 
     def setReg(self, dat):
         self.buf[0] = dat
@@ -33,20 +34,20 @@ class LCD1602():
         sleep_ms(1)
 
     def send(self, dat):
-        d=(dat&0xF0)|self.BK|self.RS
+        d = (dat & 0xF0) | self.BK | self.RS
         self.setReg(d)
-        self.setReg(d|0x04)
+        self.setReg(d | 0x04)
         self.setReg(d)
 
     def setcmd(self, cmd):
-        self.RS=0
+        self.RS = 0
         self.send(cmd)
-        self.send(cmd<<4)
+        self.send(cmd << 4)
 
     def setdat(self, dat):
-        self.RS=1
+        self.RS = 1
         self.send(dat)
-        self.send(dat<<4)
+        self.send(dat << 4)
 
     def autoaddr(self):
         for i in range(32, 63):
@@ -56,17 +57,16 @@ class LCD1602():
             except:
                 pass
         raise Exception('I2C address detect error!')
-        #return False
-                
+        # return False
 
     def clear(self):
         self.setcmd(1)
 
     def backlight(self, on):
         if on:
-            self.BK=0x08
+            self.BK = 0x08
         else:
-            self.BK=0
+            self.BK = 0
         self.setcmd(0)
 
     def on(self):
@@ -82,18 +82,18 @@ class LCD1602():
         self.setcmd(0x1C)
 
     def char(self, ch, x=-1, y=0):
-        if x>=0:
-            a=0x80
-            if y>0:
-                a=0xC0
+        if x >= 0:
+            a = 0x80
+            if y > 0:
+                a = 0xC0
             self.setcmd(a+x)
         self.setdat(ch)
 
     def puts(self, s, x=0, y=0):
         if type(s) is not str:
             s = str(s)
-        if len(s)>0:
-            self.char(ord(s[0]),x,y)
+        if len(s) > 0:
+            self.char(ord(s[0]), x, y)
             for i in range(1, len(s)):
                 self.char(ord(s[i]))
 
@@ -121,4 +121,3 @@ class LCD1602():
                 self.px += 1
                 if self.px > 15:
                     self.newline()
-

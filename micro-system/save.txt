@@ -24,6 +24,3 @@ print('Connection successful')
 print(station.ifconfig())
 
 request = urequests.get('https://api.openweathermap.org/data/2.5/weather')
-
-
-

@@ -1,10 +1,10 @@
-import time   
+import time
 
 # Remove in future
 print('WAITING 1 SECOND BEFORE START!!!!')
 time.sleep(1)
 
-#--------------------------------------------
+# --------------------------------------------
 
 abc = 0
 
@@ -22,13 +22,10 @@ while abc < 16:
         if err.value == -202:
             network_error_pin.on()
             network_status = False
-            print('Network broken')      
+            print('Network broken')
     finally:
         print('sleeping ' + str(abc))
-        #time.sleep(1)
+        # time.sleep(1)
     abc += 1
 
 print('finish')
-
-
-

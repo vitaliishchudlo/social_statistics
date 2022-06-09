@@ -9,4 +9,3 @@ sta_if_status = None
 # Workers
 
 #statuses_worker = None
-

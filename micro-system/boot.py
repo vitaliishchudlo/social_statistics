@@ -19,12 +19,12 @@ lcd_error_pin.on()
 
 # Remove in future!!!!!
 network_error_pin.off()
-#lcd_error_pin.off()
+# lcd_error_pin.off()
 
 
 # Starting booting the system
 
-# = = = = = = = LCD = = = = = = = = = 
+# = = = = = = = LCD = = = = = = = = =
 i2c = SoftI2C(scl=Pin(22), sda=Pin(21), freq=10000)
 
 try:
@@ -51,17 +51,13 @@ if not connect_wireless_network():
     print('No success')
 else:
     print('success')
-    
-        
 
 
-#while not sta_if.is
+# while not sta_if.is
 
-#while not sta_if_status:
+# while not sta_if_status:
 #    print('Started while not sta_if')
 #    sta_if = connect_wireless_network()
 #    print('STA_IF: ', sta_if_status)
 #    print('Setting sta_if - True')
 #    sta_if_status = True
-    
-
