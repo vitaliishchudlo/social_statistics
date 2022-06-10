@@ -1,11 +1,12 @@
 import time
 
 
+print('MAIN.PY')
 if not wlan_status:
     print('exiting main')
     sys.exit()
 lcd.clear()
-lcd.puts('HELLO')
+lcd.puts('HELLO MAIN.pY')
 sys.exit()
 
 # Remove in future

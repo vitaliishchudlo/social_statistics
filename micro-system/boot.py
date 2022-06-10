@@ -7,6 +7,7 @@ import uasyncio
 import machine
 import _thread
 from statuses import *
+from config import *
 from machine import SoftI2C, Pin
 from libraries.mp_i2c_lcd1602 import LCD1602
 from microdot_asyncio import Microdot, Response
@@ -54,10 +55,9 @@ def wlan_connect(lcd, ssid=None, password=None):
     if wlan_status:
         return True
     if not ssid or not password:
-        with open('config.json', 'r') as file:
-            result = json.loads(file.read())
-            ssid = result['network']['ssid']
-            password = result['network']['password']
+        config_json = read_config_file()
+        ssid = config_json['network']['ssid']
+        password = config_json['network']['password']
     if ssid and password:
         wlan.connect(ssid, password)
         for x in range(11):
@@ -71,17 +71,15 @@ def wlan_connect(lcd, ssid=None, password=None):
                 lcd.puts('   Connected', 0, 1)
                 break
         if wlan.isconnected():
+            write_network(ssid, password)
             return True
-    with open('config.json', 'w') as file:
-            result = json.loads(file.read())
-            ssid = result['network']['ssid']
-            password = result['network']['password']
+    delete_network()
     return False
 
 
-#if wlan_connect(lcd):
-#    wlan_status=True
-#    sys.exit()
+if wlan_connect(lcd):
+    wlan_status=True
+    sys.exit()
 
 network_error_pin.on()
 wlan_status = False
@@ -119,6 +117,7 @@ async def choose_network(request):
 
 @ap_wifimanager.post('/configure')
 async def configure_network(request):
+    print(read_config_file())
     try:
         request.form['ssid']
     except KeyError:
@@ -141,3 +140,4 @@ ap_wifimanager.run(host=ap.ifconfig()[0],port=80)
 if wlan.isconnected():
     wlan_status = True
 ap.active(False)
+print('ending')
