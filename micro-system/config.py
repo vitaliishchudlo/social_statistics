@@ -34,3 +34,31 @@ def delete_network():
         return True
     except Exception:
         raise
+
+
+def write_target(target, link):
+    try:
+        config_json = read_config_file()
+        config_json['targets'][target] = link
+        with open('config.json', 'w') as file:
+            file.write(json.dumps(config_json))
+        return True
+    except Exception:
+        raise
+
+
+def delete_target(target):
+    try:
+        config_json = read_config_file()
+        try:
+            del config_json['targets'][target]
+        except Exception:
+            pass
+        with open('config.json', 'w') as file:
+            file.write(json.dumps(config_json))
+        return True
+    except Exception:
+        raise
+
+
+
