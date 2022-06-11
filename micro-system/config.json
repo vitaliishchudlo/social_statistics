@@ -2,5 +2,11 @@
   "network": {
     "ssid": null,
     "password": null
+  },
+  "targets": {
+    "twitter": null,
+    "instagram": null,
+    "youtube": null,
+    "tiktok": null
   }
 }

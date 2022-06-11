@@ -1,11 +1,8 @@
-# Statuses initialization
-
-network_status = None
+# Errors
 lcd_status = None
 
-sta_if_status = None
+# Network
+wlan_status = None
+ap_status = None
 
 
-# Workers
-
-#statuses_worker = None
