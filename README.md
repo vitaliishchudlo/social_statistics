@@ -20,7 +20,11 @@ This project consists of two parts:
       The display system shall be developed in the MicroPayton language.
       The ESP32/ESP8266 microcontroller will be used.
       The output of information will be performed on LCD 1602/2004
-
+Future features in the folded version
+-------------
+  - Power change button (batteries / USB)
+  - System restart button
+  - Colored box lighting that can be changed
 ___
 
 
