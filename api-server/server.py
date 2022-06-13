@@ -1,21 +1,9 @@
-import chromedriver_autoinstaller
-from flask import Flask
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
 from flask import Flask, request, jsonify
+
+from browser import Browser
 
 # WebServer
 app = Flask(__name__)
-
-# ChromeWindow
-chromedriver_autoinstaller.install()
-options = webdriver.ChromeOptions()
-options.add_experimental_option(
-    'excludeSwitches', ['enable-logging'])
-service = Service()
-options.headless = False
-driver = webdriver.Chrome(
-    options=options, service=service)
 
 LINK_PREFIX = 'api_v1/'
 AVAILABLE_PLATFORMS = ['instagram', 'twitter', 'tiktok', 'youtube']
@@ -23,15 +11,7 @@ AVAILABLE_PLATFORMS = ['instagram', 'twitter', 'tiktok', 'youtube']
 
 @app.route('/')
 def index():
-    return 'Are you sure ?'
-
-
-def get_instagram_stats(username, url):
-    driver.get('https://github.com/vitaliishchudlo/steam_name_changer/blob/production/app.py')
-
-
-def get_twitter_stats(username):
-    pass
+    return 'http://192.168.0.104:5000/api_v1/get_social_data/?platform=instagram&username=ilo_grin_'
 
 
 @app.route(f'/{LINK_PREFIX}/get_social_data/')
@@ -54,20 +34,29 @@ def get_social_data():
         url = False
 
     if platform == 'instagram':
+
+        return jsonify(error=f'IN PROCESSING')
+
+        # if url:
+        #     if not 'https://www.instagram.com/' in username:
+        #         return jsonify(error=f'Bad url for {platform}')
+        # else:
+        #     username = f'https://www.instagram.com/{username}/'
+        # response = get_instagram_stats(username)
+        # return jsonify(username=username,
+        #                platform=platform,
+        #                followers='ДОРОБЛЯЄТЬСЯ')
+        # # followers=response['followers'],
+        # # following=response['following'])
+
+    elif platform == 'twitter':
         if url:
-            if not bool('https://www.instagram.com/' in url):
-                return jsonify(error='Bad url')
-        response = get_instagram_stats(username, url)
-        return jsonify(username=username,
-                       platform=platform,
-                       followers=response['followers'],
+            if not 'https://www.instagram.com/' in username:
+                return jsonify(error=f'Bad url for {platform}')
+        response = browser.twitter(username, url=url)
+        return jsonify(username=username, platform=platform, followers=response['followers'],
                        following=response['following'])
 
 
-    elif platform == 'twitter':
-        response = get_twitter_stats(username)
-        return jsonify(username=username, platform=platform, followers=152, following=224)
-
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
+browser = Browser()
+app.run(host='0.0.0.0', debug=True)
