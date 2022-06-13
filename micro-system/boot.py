@@ -58,10 +58,10 @@ def wlan_connected():
             time.sleep(0.7)
             lcd.backlight(False)
             network_error_pin.off()
-            time.sleep(0.7)
+            time.sleep(0.7)      
         lcd.clear()
         lcd.backlight(True)
-        return
+        return    
 
 def wlan_connect(lcd, ssid=None, password=None):
     lcd.clear()
@@ -70,7 +70,7 @@ def wlan_connect(lcd, ssid=None, password=None):
     if not ssid or not password:
         config_json = read_config_file()
         ssid = config_json['network']['ssid']
-        password = config_json['network']['password']
+        password = config_json['network']['password']           
     if ssid and password:
         wlan.connect(ssid, password)
         for x in range(11):

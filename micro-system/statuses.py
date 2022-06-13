@@ -5,4 +5,3 @@ lcd_status = None
 wlan_status = None
 ap_status = None
 
-

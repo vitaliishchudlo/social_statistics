@@ -1,12 +1,1 @@
-{
-  "network": {
-    "ssid": null,
-    "password": null
-  },
-  "targets": {
-    "twitter": null,
-    "instagram": null,
-    "youtube": null,
-    "tiktok": null
-  }
-}
+{"network": {"ssid": "TP-Link_FE50", "password": "15135094"}, "targets": {"youtube": "https://www.youtube.com/user/PewDiePie", "twitter": "vitaliishchudlo", "tiktok": "ilo_grin"}}
