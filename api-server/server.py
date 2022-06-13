@@ -33,27 +33,23 @@ def get_social_data():
     else:
         url = False
 
-    if platform == 'instagram':
-
-        return jsonify(error=f'IN PROCESSING')
-
-        # if url:
-        #     if not 'https://www.instagram.com/' in username:
-        #         return jsonify(error=f'Bad url for {platform}')
-        # else:
-        #     username = f'https://www.instagram.com/{username}/'
-        # response = get_instagram_stats(username)
-        # return jsonify(username=username,
-        #                platform=platform,
-        #                followers='ДОРОБЛЯЄТЬСЯ')
-        # # followers=response['followers'],
-        # # following=response['following'])
-
-    elif platform == 'twitter':
+    if platform == 'twitter':
         if url:
-            if not 'https://www.instagram.com/' in username:
+            if not 'https://twitter.com/' in username:
                 return jsonify(error=f'Bad url for {platform}')
         response = browser.twitter(username, url=url)
+        if not response:
+            return jsonify(error='Not found')
+        return jsonify(username=username, platform=platform, followers=response['followers'],
+                       following=response['following'])
+
+    elif platform == 'tiktok':
+        if url:
+            if not 'https://www.tiktok.com/' in username:
+                return jsonify(error=f'Bad url for {platform}')
+        response = browser.tiktok(username, url=url)
+        if not response:
+            return jsonify(error='Not found')
         return jsonify(username=username, platform=platform, followers=response['followers'],
                        following=response['following'])
 
