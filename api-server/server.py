@@ -6,12 +6,12 @@ from browser import Browser
 app = Flask(__name__)
 
 LINK_PREFIX = 'api_v1/'
-AVAILABLE_PLATFORMS = ['instagram', 'twitter', 'tiktok', 'youtube']
+AVAILABLE_PLATFORMS = ['twitter', 'tiktok', 'youtube']
 
 
 @app.route('/')
 def index():
-    return 'http://192.168.0.104:5000/api_v1/get_social_data/?platform=instagram&username=ilo_grin_'
+    return 'http://192.168.0.104:5000/api_v1/get_social_data/?platform=twitter&username=ilo_grin_'
 
 
 @app.route(f'/{LINK_PREFIX}/get_social_data/')
@@ -38,6 +38,7 @@ def get_social_data():
             if not 'https://twitter.com/' in username:
                 return jsonify(error=f'Bad url for {platform}')
         response = browser.twitter(username, url=url)
+        print(response)
         if not response:
             return jsonify(error='Not found')
         return jsonify(username=username, platform=platform, followers=response['followers'],
@@ -52,6 +53,12 @@ def get_social_data():
             return jsonify(error='Not found')
         return jsonify(username=username, platform=platform, followers=response['followers'],
                        following=response['following'])
+
+    elif platform == 'youtube':
+        if not url:
+            return jsonify(error='Not found')
+        response = browser.youtube(username)
+        return jsonify(username=username, platform=platform, followers=response['followers'])
 
 
 browser = Browser()
