@@ -1,5 +1,6 @@
 from config import *
 
+
 def response_choose_network(available_networks):
     networks_html = ''
     for network in available_networks:
@@ -29,6 +30,7 @@ def response_choose_network(available_networks):
 <body>
 """
     return response
+
 
 def bad_wifi_credentials(ssid, error):
     response = """
@@ -64,7 +66,7 @@ def html_conf_webserver():
             print(target[0] + "tar0")
             print(target[1] + "tar1")
             table += '<tr><td>&nbsp<b>' + target[0] + '</b></td>' + \
-            '<td>&nbsp' + target[1] + '</td></tr>'
+                     '<td>&nbsp' + target[1] + '</td></tr>'
     response = """
 <!DOCTYPE html>
 <html lang="en">
@@ -170,10 +172,3 @@ def html_conf_webserver():
 
 """
     return response
-    
-    
-    
-    
-
-    
-    

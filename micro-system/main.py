@@ -7,9 +7,11 @@ from config import *
 from statuses import *
 
 print(str(wlan_status) + str(lcd_status))
-#if not wlan_status or not lcd_status:
+
+
+# if not wlan_status or not lcd_status:
 #    sys.exit()
-    
+
 
 def show_config_tip(wlan_ip):
     lcd.clear()
@@ -18,22 +20,20 @@ def show_config_tip(wlan_ip):
         lcd.puts('_ _ Settings_ _ ', 0, 0)
         time.sleep(0.8)
         lcd.puts('                ', 0, 0)
-        
+
 
 def show_time():
     for x in range(3):
         now = time.localtime()
-        lcd.puts('   ' + str(now[2]) + '.' + str(now[1]) + '.' + str(now[0]) , 0, 0)
-        lcd.puts('   ' + str(now[3]) + ':' + str(now[4]) + ':' + str(now[5]) , 0, 1)
+        lcd.puts('   ' + str(now[2]) + '.' + str(now[1]) + '.' + str(now[0]), 0, 0)
+        lcd.puts('   ' + str(now[3]) + ':' + str(now[4]) + ':' + str(now[5]), 0, 1)
         time.sleep(1)
-
-
 
 
 def display_process():
     while True:
         try:
-            
+
             # twitter
             try:
                 lcd.clear()
@@ -54,7 +54,7 @@ def display_process():
                 time.sleep(3)
             except KeyError:
                 pass
-            
+
             # tiktok
             try:
                 lcd.clear()
@@ -95,7 +95,7 @@ def display_process():
                 time.sleep(3)
             except KeyError:
                 pass
-            
+
             lcd.clear()
             show_time()
 
@@ -109,19 +109,16 @@ def display_process():
                 network_error_pin.on()
                 wlan_status = False
                 print('Network broken!')
-            
-            
 
-    
 
 def configurationWebServer():
     conf_webserver = Microdot()
-    
+
     @conf_webserver.route('/', methods=["GET", "POST"])
     async def index(request):
         if not request.args:
             return Response(body=html_conf_webserver(), headers={"Content-Type": "text/html"})
-        
+
         try:
             link = request.args['link']
         except Exception:
@@ -130,25 +127,21 @@ def configurationWebServer():
             target = request.args['target']
         except Exception:
             target = None
-        
+
         if target and not link:
             delete_target(target=target)
-            
+
         if target and link:
             write_target(target=target, link=link)
-            
+
         return Response(body=html_conf_webserver(), headers={"Content-Type": "text/html"})
-            
 
-    conf_webserver.run(host=wlan_ip,port=80)
-       
-    
+    conf_webserver.run(host=wlan_ip, port=80)
 
-    
+
 print(wlan.ifconfig()[0])
 
 if __name__ == '__main__':
-    #show_config_tip(wlan_ip)
+    # show_config_tip(wlan_ip)
     display_thread = _thread.start_new_thread(display_process, ())
     configurationWebServer()
-    
