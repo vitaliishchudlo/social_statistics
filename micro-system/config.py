@@ -59,6 +59,3 @@ def delete_target(target):
         return True
     except Exception:
         raise
-
-
-

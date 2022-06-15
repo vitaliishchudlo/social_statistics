@@ -63,6 +63,8 @@ def html_conf_webserver():
     table = ''
     if targets:
         for target in targets.items():
+            print(target[0] + "tar0")
+            print(target[1] + "tar1")
             table += '<tr><td>&nbsp<b>' + target[0] + '</b></td>' + \
                      '<td>&nbsp' + target[1] + '</td></tr>'
     response = """
@@ -149,14 +151,12 @@ def html_conf_webserver():
 <div class="main" style="text-align: center; padding: 15px;">
     <form>
         <div class="choices">
-            <input type="radio" id="choice1" name="target" value="instagram">
-            <label for="choice1">Instagram</label>
-            <input type="radio" id="choice2" name="target" value="twitter">
-            <label for="choice2">Twitter</label>
-            <input type="radio" id="choice3" name="target" value="tiktok">
-            <label for="choice3">TikTok</label>
-            <input type="radio" id="choice4" name="target" value="youtube">
-            <label for="choice4">YouTube</label>
+            <input type="radio" id="choice1" name="target" value="twitter">
+            <label for="choice1">Twitter</label>
+            <input type="radio" id="choice2" name="target" value="tiktok">
+            <label for="choice2">TikTok</label>
+            <input type="radio" id="choice3" name="target" value="youtube">
+            <label for="choice3">YouTube</label>
         </div>
         <div class="input_field">
             <p>Link: <input name="link"></p>
@@ -172,11 +172,3 @@ def html_conf_webserver():
 
 """
     return response
-
-
-
-
-
-
-
-

@@ -5,6 +5,7 @@ Download sources
 ----
 - **Windows** - the most current version is [here](https://github.com/vitaliishchudlo/steam_name_changer/releases)
 -->
+NEED TO INSTALL microdot(asyncio)
 
 Prerequisites
 -------------
