@@ -28,6 +28,8 @@ Future features in the folded version
   - Colored box lighting that can be changed
 ___
 
+![Social Network Statistics](images/first.png)
+![Social Network Statistics](images/second.png)
 
 <!--
 Getting Started
