@@ -26,9 +26,10 @@ Future features in the folded version
   - Power change button (batteries / USB)
   - System restart button
   - Colored box lighting that can be changed
-___
 
+-------------
 ![Social Network Statistics](images/first.png)
+-------------
 ![Social Network Statistics](images/second.png)
 
 <!--
